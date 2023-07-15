@@ -7,7 +7,9 @@ app.get('', (req, res) => {
 
 app.get('/about', (req, res) => {
     res.send('Hello this is About Page');
-}); app.get('/help', (req, res) => {
+});
+
+app.get('/help', (req, res) => {
     res.send('Hello this is Help Page');
 });
 
