@@ -32,6 +32,8 @@ const app = express();
 // })
 
 
+app.use(express.json());
+
 app.get('/', (req, res) => {
 
     con.query("select * from users", (err, result) => {
@@ -51,15 +53,9 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
 
-    const data = {
+    const data = req.body;
 
-        name: "Amit Singh",
-        password: "Singh@639134",
-        users_type: "visitor"
-    }
-
-
-    con.query("INsert INTO users SET ?", data, (error, result, fields) => {
+    con.query("INSERT INTO users SET ?", data, (error, result, fields) => {
 
         if (error) {
 
@@ -71,5 +67,36 @@ app.post('/', (req, res) => {
     })
 
 });
+
+app.put("/", (req, res) => {
+    const data = [req.body.name, req.body.password, req.body.users_type, 1];
+    con.query('UPDATE users SET name = ? , password =?, users_type = ?', data, (error, result, field) => {
+
+        if (error) throw error;
+        res.send(result)
+
+
+    });
+
+
+    res.send("update api working")
+
+
+},)
+
+app.delete("/:name", (req, res) => {
+
+
+
+    con.query("DELETE from users WHERE name =" + req.params.name, (error, result, field) => {
+        if (error) throw error;
+        res.send(result)
+
+    })
+
+
+}
+
+)
 
 app.listen(4000);
