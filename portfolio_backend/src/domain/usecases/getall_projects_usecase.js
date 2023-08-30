@@ -4,7 +4,6 @@ class GetAllProjectsUseCase {
         this.projectRepository = projectRepository;
     }
     execute() {
-
         return this.projectRepository.getAllProjects()
     }
 }

@@ -2,13 +2,13 @@
 
 const express = require('express');
 
-const ProjectController = require('../controllers/project_controller');
-
 const router = express.Router();
 
 module.exports = (dependencies) => {
-    const projectController = new ProjectController(dependencies.getAllProjectsUseCase);
-    router.get('/', projectController.getAllProjects);
+
+    const projectController = dependencies.projectController;
+    router.get('/', projectController.getAllProjects.bind(projectController));
+    router.post('/', projectController.createProject.bind(projectController));
 
 
     return router;
