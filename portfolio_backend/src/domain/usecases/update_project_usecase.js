@@ -2,22 +2,22 @@
 
 const Project = require('../entities/project');
 
-class CreateProjectUseCase {
+class UpdateProjectUseCase {
     constructor(projectRepository) {
         this.projectRepository = projectRepository;
     }
 
     async execute(id, title, description, imageUrl) {
 
-        const newProject = new Project(
+        const updatedProject = new Project(
             id,
             title,
             description,
             imageUrl,
 
         )
-        return this.projectRepository.createProject(newProject);
+        return this.projectRepository.updateProject(updatedProject);
     }
 }
 
-module.exports = CreateProjectUseCase;
+module.exports = UpdateProjectUseCase;
