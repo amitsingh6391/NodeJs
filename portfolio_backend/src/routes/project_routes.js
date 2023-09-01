@@ -10,7 +10,6 @@ module.exports = (dependencies) => {
     router.get('/get/', projectController.getAllProjects.bind(projectController));
     router.post('/create/', projectController.createProject.bind(projectController));
 
-
     return router;
 
 }

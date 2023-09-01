@@ -14,11 +14,11 @@ class MySqlProjectRepository extends ProjectRepository {
     }
 
     async createProject(project) {
-        const { title, description, imageUrl } = project;
+        const { title, description, imageUrl, id } = project;
         console.log(`this is creating ....${project} ${JSON.stringify(project)}`)
         const [result] = await pool.execute(
-            'INSERT INTO projects (title, description, imageUrl) VALUES (?, ?, ?)',
-            [title, description, imageUrl]
+            'INSERT INTO projects (title, description, imageUrl,id) VALUES (?, ?, ?, ?)',
+            [title, description, imageUrl, id]
         )
 
 

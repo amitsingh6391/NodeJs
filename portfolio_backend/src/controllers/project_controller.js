@@ -23,14 +23,14 @@ class ProjectController {
     }
 
     async createProject(req, res) {
-        const { title, description, imageUrl } = req.body;
+        const { title, description, imageUrl, id } = req.body;
 
-        if (!title || !description || !imageUrl) {
+        if (!title || !description || !imageUrl || !id) {
             return res.status(400).json({ error: 'Missing required fields' });
         }
 
         try {
-            const projectId = await this.createProjectUseCase.execute({ title, description, imageUrl });
+            const projectId = await this.createProjectUseCase.execute({ title, description, imageUrl, id });
             res.status(201).json({ id: projectId });
         } catch (error) {
             res.status(500).json({ error: 'Internal server error' });
